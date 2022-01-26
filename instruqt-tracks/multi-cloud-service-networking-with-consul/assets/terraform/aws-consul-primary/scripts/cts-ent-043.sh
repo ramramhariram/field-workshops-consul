@@ -3,8 +3,8 @@
 #Utils
 sudo apt-get install unzip
 #Download Consul Terraform Sync
-curl --silent --remote-name https://releases.hashicorp.com/consul-terraform-sync/0.4.3+ent/consul-terraform-sync_0.4.3+ent_linux_amd64.zip
-unzip consul-terraform-sync_0.4.3+ent_linux_amd64.zip
+curl --silent --remote-name https://releases.hashicorp.com/consul-terraform-sync/0.4.3/consul-terraform-sync_0.4.3_linux_amd64.zip
+unzip consul-terraform-sync_0.4.3_linux_amd64.zip
 
 #Install consul-terraform-sync
 sudo chown root:root consul-terraform-sync
