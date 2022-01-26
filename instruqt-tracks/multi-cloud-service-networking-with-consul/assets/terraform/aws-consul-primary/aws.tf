@@ -126,7 +126,7 @@ resource "aws_instance" "cts" {
 }
 
 data "template_file" "init_cts" {
-  template = file("${path.module}/cts-ent-043.sh")
+  template = file("${path.module}/scripts/cts-ent-043.sh")
 }
 
 
