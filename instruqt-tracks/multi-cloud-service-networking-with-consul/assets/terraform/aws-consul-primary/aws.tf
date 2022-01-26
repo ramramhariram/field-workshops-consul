@@ -108,3 +108,25 @@ data "template_file" "aws_mgw_init" {
     env = data.terraform_remote_state.infra.outputs.env
   }
 }
+
+resource "aws_instance" "cts" {
+    ami                         = data.aws_ami.ubuntu.id
+    instance_type               = "t3.small"
+    key_name                    = data.terraform_remote_state.infra.outputs.aws_ssh_key_name
+    vpc_security_group_ids      = [aws_security_group.consul.id]
+    subnet_id                   = data.terraform_remote_state.infra.outputs.aws_shared_svcs_public_subnets[0]
+    associate_public_ip_address = true
+    tags = {
+      Name = "cts"
+    )
+    depends_on = [aws_internet_gateway.igw]
+    user_data                   = data.template_file.init_cts.rendered
+    iam_instance_profile        = data.terraform_remote_state.iam.outputs.aws_consul_iam_instance_profile_name
+
+}
+
+data "template_file" "init_cts" {
+  template = file("${path.module}/cts-ent-043.sh")
+}
+
+
