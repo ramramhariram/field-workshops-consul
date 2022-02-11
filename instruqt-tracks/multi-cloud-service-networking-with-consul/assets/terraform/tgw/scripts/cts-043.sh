@@ -124,12 +124,13 @@ task {
   variable_files = ["/home/ubuntu/security_input.tfvars"]
 }
 
-#TF CLOUD driver details
-driver "terraform-cloud" {
-  hostname     = "https://app.terraform.io"
-  organization = "hsankaran"
-  token        = "d7huHHZDiyIJ6g.atlasv1.vdSoEkuP3LFAluQaTTeHarm1SzqUdyAlsPKuYUpYIlzVLfkgRqDQvAtEJfwrVUres7A"
+# Terraform Driver Options
+driver "terraform" {
+  log = true
+  path = "/opt/consul-tf-sync.d/"
+  working_dir = "/opt/consul-tf-sync.d/"
 }
+
 EOF
 
 #Enable the services
