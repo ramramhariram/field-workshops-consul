@@ -1,6 +1,14 @@
 #!/bin/bash
+cd /root/terraform/cache-services
+terraform output elasticache_sg > /root/terraform/tgw/security_input.tfvars
 
 cd /root/terraform/tgw
+
+cat << EOF > /root/terraform/tgw/sg.tfvars
+security_group_id =
+EOF
+cat sg.tfvars security_input.tfvars >> security_input.tfvars
+
 terraform init
 
 pubkey=$(cat ~/.ssh/id_rsa.pub)
