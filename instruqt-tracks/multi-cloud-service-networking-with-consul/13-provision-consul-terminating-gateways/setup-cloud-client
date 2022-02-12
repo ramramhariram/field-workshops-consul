@@ -1,13 +1,13 @@
 #!/bin/bash
 cd /root/terraform/cache-services
-terraform output elasticache_sg > /root/terraform/tgw/security_input.tfvars
+terraform output elasticache_sg > /root/terraform/tgw/sgid.txt
 
 cd /root/terraform/tgw
 
-cat << EOF > /root/terraform/tgw/sg.tfvars
+cat << EOF > /root/terraform/tgw/sg.txt
 security_group_id =
 EOF
-cat sg.tfvars security_input.tfvars >> security_input.tfvars
+paste sg.txt sgid.txt >> security_input.tfvars
 
 terraform init
 
